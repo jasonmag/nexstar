@@ -1,2 +1,16 @@
-<h1>Admin::Dashboard#index</h1>
-<p>Find me in app/views/admin/dashboard/index.html.erb</p>
+<% content_for :title, "Dashboard" %>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="bg-white p-4 rounded shadow">
+    <h2 class="text-lg font-semibold">Articles</h2>
+    <p class="text-2xl font-bold"><%= Article.count %></p>
+  </div>
+  <div class="bg-white p-4 rounded shadow">
+    <h2 class="text-lg font-semibold">Projects</h2>
+    <p class="text-2xl font-bold"><%= Project.count %></p>
+  </div>
+  <div class="bg-white p-4 rounded shadow">
+    <h2 class="text-lg font-semibold">Users</h2>
+    <p class="text-2xl font-bold"><%= User.count %></p>
+  </div>
+</div>
