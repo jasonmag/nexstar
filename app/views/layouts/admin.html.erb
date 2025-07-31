@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin | <%= Rails.application.class.module_parent_name %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body class="bg-gray-100 text-gray-900 font-sans min-h-screen">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-white border-r shadow-sm p-4 hidden md:block">
+        <h2 class="text-xl font-bold mb-6">Admin Panel</h2>
+        <nav class="space-y-2">
+          <%= link_to "Dashboard", admin_root_path, class: "block px-3 py-2 rounded hover:bg-gray-100" %>
+          <%= link_to "Articles", admin_articles_path, class: "block px-3 py-2 rounded hover:bg-gray-100" %>
+          <%= link_to "Projects", admin_projects_path, class: "block px-3 py-2 rounded hover:bg-gray-100" %>
+          <%= link_to "Back to Site", root_path, class: "block px-3 py-2 rounded text-sm text-gray-500 hover:underline mt-6" %>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6">
+        <header class="flex justify-between items-center mb-4">
+          <h1 class="text-2xl font-semibold">
+            <%= content_for?(:title) ? yield(:title) : "Admin" %>
+          </h1>
+          <% if user_signed_in? %>
+            <div class="text-sm">
+              Logged in as <strong><%= current_user.email %></strong>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "ml-2 text-red-500 hover:underline" %>
+            </div>
+          <% end %>
+        </header>
+
+        <%= yield %>
+      </main>
+    </div>
+  </body>
+</html>

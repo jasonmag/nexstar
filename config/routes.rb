@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  devise_for :users
+  
+  root "pages#home"
+  get "/about", to: "pages#about"
+  
+  resources :articles, only: [:index, :show]
+
+  resources :projects, only: [:index, :show]
+
+  get "/contact", to: "contacts#new"
+  post "/contact", to: "contacts#create"
+
+  namespace :admin do
+    get "/", to: "dashboard#index"
+    resources :articles
+    resources :projects
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
