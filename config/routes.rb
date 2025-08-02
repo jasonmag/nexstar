@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post "/contact", to: "contacts#create"
 
   namespace :admin do
-    get "/", to: "dashboard#index"
+    root to: "dashboard#index"
     resources :articles
     resources :projects
   end
