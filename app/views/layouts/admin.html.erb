@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body class="bg-gray-100 text-gray-900 font-sans min-h-screen">
@@ -23,7 +23,7 @@
           <% if user_signed_in? %>
             <div class="text-sm">
               Logged in as <strong><%= current_user.email %></strong>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "ml-2 text-red-500 hover:underline" %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "ml-2 text-red-500 hover:underline" %>
             </div>
           <% end %>
         </header>
