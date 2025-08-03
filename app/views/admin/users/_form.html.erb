@@ -1,0 +1,24 @@
+<%= form_with model: [:admin, user], local: true, class: "space-y-6" do |f| %>
+  <div>
+    <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.email_field :email, class: "mt-1 block w-full border rounded px-3 py-2" %>
+  </div>
+  <div>
+    <%= f.label :admin, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.check_box :admin %>
+    <span class="ml-2 text-gray-600">Administrator?</span>
+  </div>
+  <% if action_name == 'new' || action_name == 'create' || action_name == 'edit' %>
+    <div>
+      <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 block w-full border rounded px-3 py-2" %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full border rounded px-3 py-2" %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.submit class: "bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700" %>
+  </div>
+<% end %>
