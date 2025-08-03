@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
 
+    has_one_attached :cover
+    
     validates :title, :content, presence: true
 
     scope :published, -> {
