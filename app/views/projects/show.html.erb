@@ -1,2 +1,26 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<% content_for :title, project.name %>
+
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-4 space-y-6">
+    <h1 class="text-4xl font-bold"><%= project.name %></h1>
+    <% if project.thumbnail.attached? %>
+      <%= image_tag project.thumbnail.variant(resize: "800x400^"), class: "w-full h-auto object-cover rounded-lg" %>
+    <% end %>
+    <p class="text-lg text-gray-700"><%= project.description %></p>
+    <dl class="mt-4 space-y-2 text-gray-600">
+      <dt class="font-semibold">Tech Stack</dt>
+      <dd><%= project.tech_stack %></dd>
+      <% if project.url.present? %>
+        <dt class="font-semibold">Live URL</dt>
+        <dd><%= link_to project.url, project.url, target: "_blank", rel: :noopener, class: "text-indigo-600 hover:underline" %></dd>
+      <% end %>
+      <% if project.github_url.present? %>
+        <dt class="font-semibold">Code</dt>
+        <dd><%= link_to project.github_url, project.github_url, target: "_blank", rel: :noopener, class: "text-indigo-600 hover:underline" %></dd>
+      <% end %>
+    </dl>
+    <div class="mt-12 text-indigo-600 text-sm">
+      <%= link_to "← Back to Projects", projects_path %>
+    </div>
+  </div>
+</section>

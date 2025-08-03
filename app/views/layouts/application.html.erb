@@ -24,9 +24,29 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-white text-gray-900 antialiased">
+    <header class="bg-white shadow-md sticky top-0 z-30">
+      <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+        <%= link_to "JasonMag", root_path, class: "text-2xl font-bold" %>
+        <nav class="space-x-4 text-gray-700">
+          <%= link_to "Articles", articles_path, class: "hover:text-indigo-500" %>
+          <%= link_to "Projects", projects_path, class: "hover:text-indigo-500" %>
+          <%= link_to "About", about_path, class: "hover:text-indigo-500" %>
+        </nav>
+      </div>
+    </header>
+
+    <main>
       <%= yield %>
     </main>
+
+    <footer class="bg-gray-50 mt-16 py-8">
+      <div class="max-w-4xl mx-auto text-center space-y-2 text-gray-600">
+        <%= link_to "Contact", contact_path, class: "hover:text-indigo-500" %> ·
+        <%= link_to "Articles", articles_path, class: "hover:text-indigo-500" %> ·
+        <%= link_to "Projects", projects_path, class: "hover:text-indigo-500" %>
+        <p class="mt-2 text-xs">&copy; <%= Time.current.year %> JasonMag</p>
+      </div>
+    </footer>
   </body>
-</html>
+  </html>

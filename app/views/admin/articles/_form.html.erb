@@ -1,0 +1,25 @@
+<%= form_with model: [:admin, article], class: "space-y-6" do |f| %>
+  <div>
+    <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :title, class: "mt-1 block w-full border rounded px-3 py-2" %>
+  </div>
+
+  <div>
+    <%= f.label :content, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :content, class: "mt-1 block w-full border rounded px-3 py-2", rows: 8 %>
+  </div>
+
+  <div>
+    <%= f.label :slug, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :slug, class: "mt-1 block w-full border rounded px-3 py-2" %>
+  </div>
+
+  <div>
+    <%= f.label :published_at, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.datetime_select :published_at, class: "mt-1 block w-full border rounded" %>
+  </div>
+
+  <div>
+    <%= f.submit "Save Article", class: "bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700" %>
+  </div>
+<% end %>

@@ -1,2 +1,17 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<% content_for :title, @article.title %>
+
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-4">
+    <p class="text-indigo-600 text-sm mb-2"><%= @article.published_at&.strftime("%b %d, %Y") %></p>
+    <h1 class="text-4xl font-bold mb-6"><%= @article.title %></h1>
+    <% if @article.cover.attached? %>
+      <%= image_tag @article.cover.variant(resize: "750x400^"), class: "w-full h-auto object-cover mb-8 rounded-lg" %>
+    <% end %>
+    <div class="prose prose-indigo mx-auto text-gray-800">
+      <%= @article.content.html_safe %>
+    </div>
+    <div class="mt-12 text-indigo-600 text-sm">
+      <%= link_to "← Back to Articles", articles_path %>
+    </div>
+  </div>
+</section>
