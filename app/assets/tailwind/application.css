@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Light mode defaults */
+  --color-background: oklch(1 0 98);     /* white-ish */
+  --color-text: var(--color-gray-900);
+  --color-primary: oklch(0.62 0.4 135);   /* indigo */
+  --color-hover: oklch(0.62 0.4 120);     /* indigo shade */
+}
+
+html.dark {
+  --color-background: oklch(0.1 0 10);    /* very dark */
+  --color-text: oklch(0.96 0.01 10);      /* near-white */
+  --color-primary: oklch(0.62 0.4 200);   /* deeper cyan-ish */
+  --color-hover: oklch(0.62 0.4 180);
+}

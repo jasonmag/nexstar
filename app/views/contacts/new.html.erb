@@ -1,2 +1,44 @@
-<h1>Contacts#new</h1>
-<p>Find me in app/views/contacts/new.html.erb</p>
+<% content_for :title, "Contact" %>
+
+<section class="py-20 bg-gray-50 dark:bg-gray-800 dark:text-gray-100">
+  <div class="max-w-3xl mx-auto px-6 space-y-8">
+    <h1 class="text-3xl font-bold">Send a Message</h1>
+
+    <% if flash[:success] %>
+      <div class="bg-green-100 dark:bg-green-800 text-green-900 dark:text-green-200 p-4 rounded">
+        <%= flash[:success] %>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="bg-red-100 dark:bg-red-800 text-red-900 dark:text-red-200 p-4 rounded">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+
+    <%= form_with model: @contact, url: contacts_path, scope: :contact_form, local: true, class: "space-y-6" do |f| %>
+      <div>
+        <%= f.label :name, class: "block text-sm font-medium" %>
+        <%= f.text_field :name, class: "mt-1 w-full rounded bg-gray-100 dark:bg-gray-600 px-3 py-2" %>
+        <% @contact.errors[:name].each do |msg| %>
+          <div class="text-red-600 text-sm"><%= msg %></div>
+        <% end %>
+      </div>
+      <div>
+        <%= f.label :email, class: "block text-sm font-medium" %>
+        <%= f.email_field :email, class: "mt-1 w-full rounded bg-gray-100 dark:bg-gray-600 px-3 py-2" %>
+        <% @contact.errors[:email].each do |msg| %>
+          <div class="text-red-600 text-sm"><%= msg %></div>
+        <% end %>
+      </div>
+      <div>
+        <%= f.label :message, class: "block text-sm font-medium" %>
+        <%= f.text_area :message, rows: 5, class: "mt-1 w-full rounded bg-gray-100 dark:bg-gray-600 px-3 py-2" %>
+        <% @contact.errors[:message].each do |msg| %>
+          <div class="text-red-600 text-sm"><%= msg %></div>
+        <% end %>
+      </div>
+      <div>
+        <%= f.submit "Send Message", class: "w-full bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700" %>
+      </div>
+    <% end %>
+  </div>
+</section>

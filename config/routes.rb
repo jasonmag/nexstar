@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   resources :projects, only: [:index, :show]
 
-  get "/contact", to: "contacts#new"
-  post "/contact", to: "contacts#create"
+  resources :contacts, only: [:new, :create]
+  get 'contact', to: 'contacts#new', as: 'contact' # And optionally, if you prefer a friendly path
 
   namespace :admin do
     root to: "dashboard#index"
