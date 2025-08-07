@@ -4,19 +4,20 @@
   <div class="max-w-4xl mx-auto px-6 space-y-12">
     <div class="flex flex-col md:flex-row items-center">
       <div class="mb-8 md:mb-0 md:mr-10 flex-shrink-0">
-        <%= image_tag "https://placehold.co/200x200/888/fff?text=Your+Photo", 
-            class: "w-40 h-40 rounded-full object-cover mx-auto", alt: "Profile Photo" %>
+        <%= render "shared/profile_image", img_class: "w-40 h-40 rounded-full border-4 border-teal-400 shadow-lg object-cover object-center mx-auto" %>
       </div>
       <div>
         <h1 class="text-4xl font-bold mb-2">Jason Maglangit</h1>
         <p class="text-indigo-600 dark:text-indigo-400 font-semibold mb-4">
-          Full‑Stack Rails & Tailwind Developer
+          Full‑Stack Ruby on Rails & Data Engineer
         </p>
         <p class="text-gray-700 dark:text-gray-300 mb-4">
-          With a passion for building clean, fast web experiences, I specialize in Ruby on Rails, Tailwind CSS, and modern frontend frameworks. I'm based in Cebu City and love writing and sharing knowledge with the tech community.
+          I help founders and teams launch, scale, and automate digital businesses.<br>
+          Based in Cebu City, I specialize in Rails, modern frontends, and robust cloud architecture.
         </p>
         <p class="text-gray-700 dark:text-gray-300">
-          Whether you're building a startup, need help with data engineering, or want to collaborate on open‑source tools—let’s chat.
+          I love building, writing, and sharing with the tech community.<br>
+          Need a partner for a new product, help with your SaaS, or a mentor for your team? Let’s chat!
         </p>
       </div>
     </div>
@@ -29,7 +30,7 @@
           <li>Design data pipelines (Azure, Microsoft Fabric, Databricks)</li>
           <li>Implement DevOps, Docker, CI/CD, cloud deployment</li>
           <li>Create clean UI with Tailwind and Hotwire (Turbo & Stimulus)</li>
-          <li>Write, mentor, and publish open-source tools</li>
+          <li>Mentor engineers and contribute to open source</li>
         </ul>
       </div>
 
@@ -43,6 +44,7 @@
           <span class="bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-300 rounded px-3 py-1 text-sm">Docker</span>
           <span class="bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-300 rounded px-3 py-1 text-sm">Hotwire</span>
           <span class="bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-300 rounded px-3 py-1 text-sm">Microsoft Fabric</span>
+          <span class="bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-300 rounded px-3 py-1 text-sm">Consulting</span>
         </div>
       </div>
     </div>
@@ -54,6 +56,9 @@
         <%= link_to "GitHub", "https://github.com/jasonmag", target: "_blank", rel: :noopener, class: "text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 underline" %>
         <%= link_to "LinkedIn", "https://www.linkedin.com/in/jasonmag", target: "_blank", rel: :noopener, class: "text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 underline" %>
       </div>
+      <p class="mt-6 text-gray-600 dark:text-gray-400 italic">
+        Available for remote contracts, consulting, or your next big idea.
+      </p>
     </div>
   </div>
 </section>

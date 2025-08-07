@@ -35,30 +35,12 @@
   </head>
 
   <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
-    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-30">
-      <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
-        <%= link_to "JasonMag", root_path, class: "text-2xl font-bold text-gray-900 dark:text-gray-100" %>
-        <nav class="space-x-4 text-gray-700 dark:text-gray-300">
-          <%= link_to "Articles", articles_path, class: "hover:text-indigo-500" %>
-          <%= link_to "Projects", projects_path, class: "hover:text-indigo-500" %>
-          <%= link_to "About", about_path, class: "hover:text-indigo-500" %>
-        </nav>
-        <!-- Theme toggle button -->
-        <%= render "shared/dark_mode_toggle" %>
-      </div>
-    </header>
+    <%= render "shared/header" %>
 
     <main>
       <%= yield %>
     </main>
 
-    <footer class="bg-gray-50 dark:bg-gray-800 mt-16 py-8 text-gray-600 dark:text-gray-300">
-      <div class="max-w-4xl mx-auto text-center space-y-2">
-        <%= link_to "Contact", contact_path, class: "hover:text-indigo-500" %> ·
-        <%= link_to "Articles", articles_path, class: "hover:text-indigo-500" %> ·
-        <%= link_to "Projects", projects_path, class: "hover:text-indigo-500" %>
-        <p class="mt-2 text-xs">&copy; <%= Time.current.year %> JasonMag</p>
-      </div>
-    </footer>
+    <%= render "shared/footer" %>
   </body>
 </html>

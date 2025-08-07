@@ -4,15 +4,27 @@
 
 @theme {
   /* Light mode defaults */
-  --color-background: oklch(1 0 98);     /* white-ish */
+  --color-background: oklch(1 0 98);        /* white-ish */
   --color-text: var(--color-gray-900);
-  --color-primary: oklch(0.62 0.4 135);   /* indigo */
-  --color-hover: oklch(0.62 0.4 120);     /* indigo shade */
+  --color-primary: oklch(0.62 0.4 135);     /* indigo */
+  --color-hover: oklch(0.62 0.4 120);       /* indigo shade */
+  --color-accent: oklch(0.82 0.18 95);      /* teal/cyan */
+  --color-accent-hover: oklch(0.82 0.18 85);/* deeper teal */
+  --color-gold: oklch(0.93 0.18 85);        /* gold/yellow accent */
+  --color-gold-hover: oklch(0.83 0.18 85);  /* slightly deeper gold */
 }
 
 html.dark {
-  --color-background: oklch(0.1 0 10);    /* very dark */
-  --color-text: oklch(0.96 0.01 10);      /* near-white */
-  --color-primary: oklch(0.62 0.4 200);   /* deeper cyan-ish */
+  --color-background: oklch(0.1 0 10);     /* very dark */
+  --color-text: oklch(0.96 0.01 10);       /* near-white */
+  --color-primary: oklch(0.62 0.4 200);    /* deeper cyan-ish */
   --color-hover: oklch(0.62 0.4 180);
+  --color-accent: oklch(0.85 0.18 170);    /* rich teal/blue for dark */
+  --color-accent-hover: oklch(0.75 0.18 170);
+  --color-gold: oklch(0.83 0.18 85);       /* gold for dark, a bit deeper */
+  --color-gold-hover: oklch(0.65 0.18 85);
+}
+
+.object-position-45-40 {
+  object-position: 45% 40%;
 }
