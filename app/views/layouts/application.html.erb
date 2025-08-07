@@ -44,12 +44,7 @@
           <%= link_to "About", about_path, class: "hover:text-indigo-500" %>
         </nav>
         <!-- Theme toggle button -->
-        <div data-controller="dark-mode" class="ml-4 cursor-pointer p-2">
-          <button data-action="click->dark-mode#toggle" class="flex items-center">
-            <span class="dark:hidden text-gray-800">🌙</span>
-            <span class="hidden dark:block text-yellow-300">☀️</span>
-          </button>
-        </div>
+        <%= render "shared/dark_mode_toggle" %>
       </div>
     </header>
 
