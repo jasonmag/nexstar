@@ -1,24 +1,29 @@
 <%= form_with model: [:admin, user], local: true, class: "space-y-6" do |f| %>
   <div>
-    <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.email_field :email, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    <%= f.label :email, class: "block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1" %>
+    <%= f.email_field :email, class: "mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-yellow-400 focus:border-yellow-400 dark:focus:ring-teal-400 dark:focus:border-teal-400 transition" %>
   </div>
+
   <div>
-    <%= f.label :admin, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.check_box :admin %>
-    <span class="ml-2 text-gray-600">Administrator?</span>
+    <%= f.label :admin, class: "block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1" %>
+    <label class="inline-flex items-center mt-1">
+      <%= f.check_box :admin, class: "rounded border-gray-300 dark:border-gray-600 text-yellow-500 dark:text-teal-400 focus:ring-yellow-400 dark:focus:ring-teal-400" %>
+      <span class="ml-2 text-gray-700 dark:text-gray-300 text-sm">Administrator?</span>
+    </label>
   </div>
+
   <% if action_name == 'new' || action_name == 'create' || action_name == 'edit' %>
     <div>
-      <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 block w-full border rounded px-3 py-2" %>
+      <%= f.label :password, class: "block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-yellow-400 focus:border-yellow-400 dark:focus:ring-teal-400 dark:focus:border-teal-400 transition" %>
     </div>
     <div>
-      <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full border rounded px-3 py-2" %>
+      <%= f.label :password_confirmation, class: "block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-yellow-400 focus:border-yellow-400 dark:focus:ring-teal-400 dark:focus:border-teal-400 transition" %>
     </div>
   <% end %>
+
   <div>
-    <%= f.submit class: "bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700" %>
+    <%= f.submit nil, class: "w-full bg-yellow-400 dark:bg-teal-400 text-slate-900 dark:text-gray-900 font-bold px-4 py-2 rounded-lg shadow hover:bg-yellow-500 dark:hover:bg-teal-500 transition" %>
   </div>
 <% end %>

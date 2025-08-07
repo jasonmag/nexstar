@@ -1,33 +1,44 @@
 <% content_for :title, "Users" %>
 
 <div class="flex justify-between items-center mb-6">
-  <h1 class="text-2xl font-bold">Users</h1>
-  <%= link_to "New User", new_admin_user_path, class: "bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700" %>
+  <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Users</h1>
+  <%= link_to "New User", new_admin_user_path,
+      class: "bg-yellow-400 dark:bg-teal-400 text-slate-900 dark:text-gray-900 font-bold px-4 py-2 rounded-lg shadow hover:bg-yellow-500 dark:hover:bg-teal-500 transition" %>
 </div>
 
-<table class="min-w-full bg-white shadow rounded-lg">
-  <thead class="bg-gray-100">
-    <tr>
-      <th class="px-4 py-2 text-left">Email</th>
-      <th class="px-4 py-2 text-left">Admin?</th>
-      <th class="px-4 py-2 text-left">Created At</th>
-      <th class="px-4 py-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td class="px-4 py-2"><%= user.email %></td>
-        <td class="px-4 py-2"><%= user.admin? ? "Yes" : "No" %></td>
-        <td class="px-4 py-2"><%= user.created_at.strftime("%b %d, %Y") %></td>
-        <td class="px-4 py-2 space-x-2">
-          <%= link_to "Show", admin_user_path(user), class: "text-indigo-600 hover:underline" %>
-          <%= link_to "Edit", edit_admin_user_path(user), class: "text-yellow-600 hover:underline" %>
-          <% unless user == current_user %>
-            <%= link_to "Delete", admin_user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600 hover:underline" %>
-          <% end %>
-        </td>
+<div class="overflow-x-auto rounded-2xl shadow-lg bg-white dark:bg-gray-800">
+  <table class="min-w-full">
+    <thead>
+      <tr class="bg-gray-100 dark:bg-gray-700 text-left text-xs uppercase text-gray-700 dark:text-gray-200 tracking-wider">
+        <th class="px-6 py-3">Email</th>
+        <th class="px-6 py-3">Admin?</th>
+        <th class="px-6 py-3">Created At</th>
+        <th class="px-6 py-3">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody class="text-sm text-gray-900 dark:text-gray-100 divide-y divide-gray-200 dark:divide-gray-700">
+      <% @users.each do |user| %>
+        <tr class="hover:bg-yellow-50 dark:hover:bg-teal-900 transition">
+          <td class="px-6 py-4"><%= user.email %></td>
+          <td class="px-6 py-4">
+            <% if user.admin? %>
+              <span class="inline-block px-2 py-1 rounded bg-yellow-400 dark:bg-teal-400 text-slate-900 dark:text-gray-900 font-bold text-xs">Yes</span>
+            <% else %>
+              <span class="inline-block px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs">No</span>
+            <% end %>
+          </td>
+          <td class="px-6 py-4"><%= user.created_at.strftime("%b %d, %Y") %></td>
+          <td class="px-6 py-4 space-x-2">
+            <%= link_to "Show", admin_user_path(user), class: "text-indigo-600 dark:text-indigo-400 font-semibold hover:underline" %>
+            <%= link_to "Edit", edit_admin_user_path(user), class: "text-yellow-600 dark:text-teal-400 font-semibold hover:underline" %>
+            <% unless user == current_user %>
+              <%= link_to "Delete", admin_user_path(user),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "text-red-600 font-semibold hover:underline" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

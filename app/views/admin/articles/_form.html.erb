@@ -1,25 +1,25 @@
 <%= form_with model: [:admin, article], class: "space-y-6" do |f| %>
   <div>
-    <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.text_field :title, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    <%= f.label :title, class: "block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1" %>
+    <%= f.text_field :title, class: "mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-yellow-400 focus:border-yellow-400 dark:focus:ring-teal-400 dark:focus:border-teal-400 transition" %>
   </div>
 
   <div>
-    <%= f.label :content, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.text_area :content, class: "mt-1 block w-full border rounded px-3 py-2", rows: 8 %>
+    <%= f.label :content, class: "block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1" %>
+    <%= f.text_area :content, rows: 8, class: "mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-yellow-400 focus:border-yellow-400 dark:focus:ring-teal-400 dark:focus:border-teal-400 transition" %>
   </div>
 
   <div>
-    <%= f.label :slug, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.text_field :slug, class: "mt-1 block w-full border rounded px-3 py-2" %>
+    <%= f.label :slug, class: "block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1" %>
+    <%= f.text_field :slug, class: "mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-yellow-400 focus:border-yellow-400 dark:focus:ring-teal-400 dark:focus:border-teal-400 transition" %>
   </div>
 
   <div>
-    <%= f.label :published_at, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.datetime_select :published_at, class: "mt-1 block w-full border rounded" %>
+    <%= f.label :published_at, class: "block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1" %>
+    <%= f.datetime_select :published_at, class: "mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-yellow-400 focus:border-yellow-400 dark:focus:ring-teal-400 dark:focus:border-teal-400 transition" %>
   </div>
 
   <div>
-    <%= f.submit "Save Article", class: "bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700" %>
+    <%= f.submit "Save Article", class: "w-full bg-yellow-400 dark:bg-teal-400 text-slate-900 dark:text-gray-900 font-bold px-4 py-2 rounded-lg shadow hover:bg-yellow-500 dark:hover:bg-teal-500 transition" %>
   </div>
 <% end %>

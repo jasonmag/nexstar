@@ -1,5 +1,9 @@
 <% content_for :title, "New Article" %>
 
-<h1 class="text-xl font-bold mb-4">New Article</h1>
-
-<%= render "form", article: @article %>
+<div class="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-8 max-w-2xl mx-auto">
+  <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">New Article</h1>
+  <%= render "form", article: @article %>
+  <div class="mt-6">
+    <%= link_to "← Back to Articles", admin_articles_path, class: "text-indigo-600 dark:text-teal-400 font-semibold hover:underline" %>
+  </div>
+</div>
