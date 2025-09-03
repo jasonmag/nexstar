@@ -1,61 +1,91 @@
 <% content_for :title, "Projects" %>
 
-<section class="py-16 bg-white dark:bg-gray-900 dark:text-gray-100">
-  <div class="max-w-6xl mx-auto px-6">
-    <h1 class="text-4xl font-bold text-center mb-12">Projects</h1>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <% @projects.order(released_on: :desc).each do |project| %>
-        <div class="flex flex-col bg-white dark:bg-gray-700 rounded-xl shadow-sm border-2 border-slate-200 dark:border-gray-700 overflow-hidden transition hover:shadow-lg hover:scale-105 hover:z-10 duration-200">
-          <!-- Accent Bar -->
-          <div class="h-2 bg-yellow-400 dark:bg-teal-400"></div>
-          <!-- Project Image, clickable -->
-          <div class="h-48 overflow-hidden flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-            <%= link_to project_path(project) do %>
-              <% if project.thumbnail.attached? %>
-                <%= image_tag project.thumbnail.variant(resize: "600x360^"), class: "w-full h-full object-cover", alt: project.name %>
-              <% else %>
-                <%= image_tag "https://placehold.co/400x240?text=Project", class: "w-full h-full object-cover", alt: project.name %>
-              <% end %>
-            <% end %>
-          </div>
-          <!-- Project Content -->
-          <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              <%= link_to project.name, project_path(project), class: "hover:text-indigo-500 dark:hover:text-indigo-400 transition" %>
-            </h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
-              <%= truncate(strip_tags(project.description), length: 100) %>
+<!-- Hero Section -->
+<header class="relative flex items-center justify-center text-center overflow-hidden" style="background-image: url('<%= asset_path("hero-bg.png") %>');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;">
+    <div class="absolute inset-0 bg-[#0a0d14]/60"></div>
+    <div class="relative z-10 py-32 md:py-40 px-4">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Project</h1>
+        <p class="text-lg md:text-xl text-gray-300">Selected projects and experiments</p>
+    </div>
+</header>
+
+<!-- Projects Listing -->
+<section class="py-16 px-6 max-w-screen-xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-8">All Projects</h2>
+    <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Card 1 -->
+        <a href="work-web-application-framework.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
+        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
+        <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">Web Application Framework</h3>
+            <p class="text-gray-400 flex-1 mb-4">
+            Designed and implemented a modular web application framework that simplifies development by
+            scaffolding common features such as authentication, authorisation and API integration.
+            Built with TypeScript and React.
             </p>
-            <dl class="mt-auto text-sm text-gray-800 dark:text-gray-200 space-y-1">
-              <dt class="font-semibold">Released:</dt>
-              <dd><%= project.released_on.strftime("%b %d, %Y") %></dd>
-            </dl>
-            <!-- Tech Stack Badges -->
-            <% if project.tech_stack.present? %>
-              <div class="flex flex-wrap gap-2 mt-4">
-                <% project.tech_stack.split(',').each do |tech| %>
-                  <span class="bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-300 rounded px-2 py-1 text-xs font-semibold">
-                    <%= tech.strip %>
-                  </span>
-                <% end %>
-              </div>
-            <% end %>
-            <!-- Links -->
-            <div class="flex gap-4 mt-4">
-              <% if project.github_url.present? %>
-                <%= link_to "GitHub", project.github_url, target: "_blank", rel: :noopener, class: "text-indigo-600 dark:text-indigo-400 font-semibold hover:underline" %>
-              <% end %>
-              <% if project.url.present? %>
-                <%= link_to "Visit", project.url, target: "_blank", rel: :noopener, class: "text-yellow-600 dark:text-teal-400 font-semibold hover:underline" %>
-              <% end %>
-            </div>
-          </div>
         </div>
-      <% end %>
+        </a>
+        <!-- Card 2 -->
+        <a href="work-machine-learning-pipeline.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
+        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
+        <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">Machine Learning Pipeline</h3>
+            <p class="text-gray-400 flex-1 mb-4">
+            Architected and deployed an end‑to‑end machine learning pipeline using Apache Spark and MLflow.
+            The project automated data ingestion, preprocessing, model training and evaluation on big
+            datasets.
+            </p>
+        </div>
+        </a>
+        <!-- Card 3 -->
+        <a href="work-devops-automation-suite.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
+        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
+        <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">DevOps Automation Suite</h3>
+            <p class="text-gray-400 flex-1 mb-4">
+            Developed a suite of Terraform modules and Kubernetes manifests to automate infrastructure
+            provisioning and application deployments across multiple environments, ensuring consistent and
+            repeatable setups.
+            </p>
+        </div>
+        </a>
+        <!-- Card 4 -->
+        <a href="work-data-visualisation-dashboard.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
+        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
+        <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">Data Visualisation Dashboard</h3>
+            <p class="text-gray-400 flex-1 mb-4">
+            Created an interactive dashboard that visualises complex datasets using D3.js and WebGL. The
+            dashboard supports real‑time updates and enables stakeholders to gain insights quickly through
+            intuitive charts.
+            </p>
+        </div>
+        </a>
+        <!-- Card 5 -->
+        <a href="work-serverless-api-gateway.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
+        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
+        <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">Serverless API Gateway</h3>
+            <p class="text-gray-400 flex-1 mb-4">
+            Implemented a cost‑effective serverless REST API using AWS Lambda and API Gateway. The API
+            powers a mobile application and scales seamlessly with incoming traffic.
+            </p>
+        </div>
+        </a>
+        <!-- Card 6 -->
+        <a href="work-cloud-migration.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
+        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
+        <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">Cloud Migration</h3>
+            <p class="text-gray-400 flex-1 mb-4">
+            Led the migration of legacy on‑premise services to the cloud, re‑architecting systems for
+            elasticity and resilience. Utilised containerisation and Infrastructure as Code to minimise
+            downtime.
+            </p>
+        </div>
+        </a>
     </div>
-    <div class="text-center mt-16">
-      <h2 class="text-2xl font-semibold mb-4">Want to build something together?</h2>
-      <%= link_to "Contact Me", contact_path, class: "inline-block bg-yellow-400 dark:bg-teal-400 text-slate-900 font-bold px-8 py-3 rounded-xl shadow-lg hover:bg-yellow-500 dark:hover:bg-teal-500 hover:text-white transition" %>
-    </div>
-  </div>
 </section>
