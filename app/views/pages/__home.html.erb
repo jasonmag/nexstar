@@ -1,0 +1,99 @@
+<% content_for :title, "Home" %>
+
+<!-- Hero Section -->
+<%= render "shared/hero" %>
+
+<!-- Articles Feed Section -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800 dark:text-gray-100">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-8 text-center">Latest Articles</h2>
+    <div class="space-y-6">
+      <% @articles.limit(5).each do |article| %>
+        <div class="flex items-start space-x-4 p-4 rounded-xl border-l-4 border-yellow-400 dark:border-teal-400 bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm transition hover:shadow-md hover:bg-white/80 dark:hover:bg-gray-700/80 group">
+          <div class="flex-shrink-0 w-24 h-16 bg-gray-200/70 dark:bg-gray-600/70 overflow-hidden rounded">
+            <%= link_to article_path(article) do %>
+              <% if article.cover.attached? %>
+                <%= image_tag article.cover.variant(resize: "96x64^"), class: "w-full h-full object-cover" %>
+              <% else %>
+                <%= image_tag "https://placehold.co/96x64/ccc/777?text=No+Image", class: "w-full h-full object-cover" %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="flex-1">
+            <span class="inline-block mb-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-300">
+              <%= article.published_at&.strftime("%b %d, %Y") %>
+            </span>
+            <h3 class="text-lg font-semibold mb-1">
+              <%= link_to article.title, article_path(article),
+                            class: "hover:text-yellow-500 dark:hover:text-teal-400 transition-colors" %>
+            </h3>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">
+              <%= truncate(strip_tags(article.content), length: 120) %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="mt-8 text-center">
+      <%= link_to "Read All Articles", articles_path,
+          class: "text-indigo-600 dark:text-indigo-400 font-semibold hover:underline" %>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section class="py-16 bg-white dark:bg-gray-900 dark:text-gray-100">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12">Highlighted Projects</h2>
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <% @projects.limit(3).each do |project| %>
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border-t-4 border-yellow-400 dark:border-teal-400 hover:shadow-2xl transition flex flex-col">
+          <% if project.thumbnail.attached? %>
+            <%= link_to project_path(project) do %>
+              <%= image_tag project.thumbnail.variant(resize: "400x250^"), class: "w-full h-48 object-cover rounded-t-2xl" %>
+            <% end %>
+          <% else %>
+            <%= link_to project_path(project) do %>
+              <%= image_tag "https://placehold.co/400x250", class: "w-full h-48 object-cover rounded-t-2xl" %>
+            <% end %>
+          <% end %>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">
+              <%= link_to project.name, project_path(project), class: "hover:text-yellow-500 dark:hover:text-teal-400 transition" %>
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              <%= truncate(strip_tags(project.description), length: 100) %>
+            </p>
+            <div class="mt-auto">
+              <%= link_to "View Project →", project_path(project), class: "text-yellow-600 dark:text-teal-400 font-semibold hover:underline" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="mt-8 text-center">
+      <%= link_to "More Projects", projects_path, class: "text-indigo-600 dark:text-indigo-400 font-semibold hover:underline" %>
+    </div>
+  </div>
+</section>
+
+<!-- About CTA -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800 dark:text-gray-100">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-6">About Me</h2>
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">
+      I’m Jason—a developer passionate about building clean and impactful web experiences with Rails and Tailwind.
+    </p>
+    <%= link_to "Learn More", about_path,
+        class: "inline-block bg-yellow-400 dark:bg-teal-400 text-slate-900 dark:text-gray-900 font-bold px-6 py-3 rounded-xl shadow hover:bg-yellow-500 dark:hover:bg-teal-500 hover:text-white transition" %>
+  </div>
+</section>
+
+<!-- Final Contact CTA -->
+<section class="py-12 bg-indigo-700 dark:bg-indigo-600 text-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h3 class="text-xl font-semibold mb-4">Ready to collaborate or get in touch?</h3>
+    <%= link_to "Contact Me", contact_path,
+        class: "bg-white text-indigo-700 font-bold px-6 py-3 rounded-xl shadow hover:bg-gray-100 transition" %>
+  </div>
+</section>

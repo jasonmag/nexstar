@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   root "pages#home"
   get "/about", to: "pages#about"
-  
-  resources :articles, only: [:index, :show]
 
-  resources :projects, only: [:index, :show]
+  resources :articles, only: [ :index, :show ]
 
-  resources :contacts, only: [:new, :create]
-  get 'contact', to: 'contacts#new', as: 'contact' # And optionally, if you prefer a friendly path
+  resources :projects, only: [ :index, :show ]
+
+  resources :contacts, only: [ :new, :create ]
+  get "contact", to: "contacts#new", as: "contact" # And optionally, if you prefer a friendly path
 
   namespace :admin do
     root to: "dashboard#index"
