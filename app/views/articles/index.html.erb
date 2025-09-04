@@ -1,34 +1,44 @@
 <% content_for :title, "Articles" %>
 
-<section class="py-16 bg-white dark:bg-gray-900 dark:text-gray-100">
-  <div class="max-w-6xl mx-auto px-6 space-y-8">
-    <h1 class="text-4xl font-bold text-center mb-6">Articles</h1>
-    <div class="space-y-6">
-      <% @articles.order(published_at: :desc).each do |article| %>
-        <div class="flex items-start space-x-4 p-4 rounded-lg bg-white dark:bg-gray-700 border-l-4 border-yellow-400 dark:border-teal-400 transition hover:shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 group">
-          <div class="flex-shrink-0 w-24 h-16 bg-gray-200 dark:bg-gray-600 overflow-hidden rounded">
-            <%= link_to article_path(article) do %>
-              <% if article.cover.attached? %>
-                <%= image_tag article.cover.variant(resize: "96x64^"), class: "w-full h-full object-cover" %>
-              <% else %>
-                <%= image_tag "https://placehold.co/96x64/ccc/777?text=No+Image", class: "w-full h-full object-cover" %>
-              <% end %>
-            <% end %>
-          </div>
-          <div class="flex-1">
-            <span class="inline-block mb-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-300">
-              <%= article.published_at&.strftime("%b %d, %Y") %>
-            </span>
-            <h3 class="text-lg font-semibold mb-1">
-              <%= link_to article.title, article_path(article),
-                          class: "hover:text-yellow-500 dark:hover:text-teal-400 transition-colors" %>
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 text-sm">
-              <%= truncate(strip_tags(article.content), length: 140) %>
-            </p>
-          </div>
-        </div>
-      <% end %>
+<!-- Hero Section -->
+<header class="relative flex items-center justify-center text-center overflow-hidden" style="background-image: url('<%= asset_path("hero-bg.png") %>');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;">
+    <div class="absolute inset-0 bg-[#0a0d14]/60"></div>
+    <div class="relative z-10 py-32 md:py-40 px-4">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Articles</h1>
+        <p class="text-lg md:text-xl text-gray-300">Thoughts, tutorials & insights</p>
     </div>
-  </div>
+</header>
+
+<!-- Projects Listing -->
+<section class="py-16 px-6 max-w-screen-xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-8">Latest Posts</h2>
+    <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Card 1 -->
+        <a href="article-web-performance.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
+            <%= image_tag "hero-bg.png", alt: "Article image", class: "h-40 w-full object-cover" %>
+            <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">Improving Web Performance</h3>
+            <p class="text-gray-400 flex-1 mb-4">Learn techniques to speed up your web applications and enhance user experience.</p>
+            </div>
+        </a>
+        <!-- Card 2 -->
+        <a href="article-ml-workflows.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
+            <%= image_tag "about-bg.png", alt: "Article image", class: "h-40 w-full object-cover" %>
+            <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">Optimising Machine Learning Workflows</h3>
+            <p class="text-gray-400 flex-1 mb-4">Discover strategies to streamline your data pipelines and accelerate model development.</p>
+            </div>
+        </a>
+        <!-- Card 3 -->
+        <a href="article-devops-landscape.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
+            <%= image_tag "projects-bg.png", alt: "Article image", class: "h-40 w-full object-cover" %>
+            <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">Navigating the DevOps Landscape</h3>
+            <p class="text-gray-400 flex-1 mb-4">Explore the essential practices and tools that underpin modern DevOps.</p>
+            </div>
+        </a>
+    </div>
 </section>
