@@ -1,0 +1,13 @@
+<a href="<%= article_path(article) %>"
+   class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
+
+  <%# Choose image: use ActiveStorage cover if you add one later, otherwise use fallback %>
+  <%= image_tag(asset_path("hero-bg.png"), alt: article.title, class: "h-40 w-full object-cover") %>
+
+  <div class="p-6 flex-1 flex flex-col">
+    <h3 class="text-xl font-semibold mb-2"><%= article.title %></h3>
+    <p class="text-gray-400 flex-1 mb-4">
+      <%= truncate(article.content.to_s, length: 140) %>
+    </p>
+  </div>
+</a>
