@@ -15,77 +15,8 @@
 <!-- Projects Listing -->
 <section class="py-16 px-6 max-w-screen-xl mx-auto">
     <h2 class="text-3xl font-semibold mb-8">All Projects</h2>
+
     <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- Card 1 -->
-        <a href="work-web-application-framework.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
-        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
-        <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold mb-2">Web Application Framework</h3>
-            <p class="text-gray-400 flex-1 mb-4">
-            Designed and implemented a modular web application framework that simplifies development by
-            scaffolding common features such as authentication, authorisation and API integration.
-            Built with TypeScript and React.
-            </p>
-        </div>
-        </a>
-        <!-- Card 2 -->
-        <a href="work-machine-learning-pipeline.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
-        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
-        <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold mb-2">Machine Learning Pipeline</h3>
-            <p class="text-gray-400 flex-1 mb-4">
-            Architected and deployed an end‑to‑end machine learning pipeline using Apache Spark and MLflow.
-            The project automated data ingestion, preprocessing, model training and evaluation on big
-            datasets.
-            </p>
-        </div>
-        </a>
-        <!-- Card 3 -->
-        <a href="work-devops-automation-suite.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
-        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
-        <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold mb-2">DevOps Automation Suite</h3>
-            <p class="text-gray-400 flex-1 mb-4">
-            Developed a suite of Terraform modules and Kubernetes manifests to automate infrastructure
-            provisioning and application deployments across multiple environments, ensuring consistent and
-            repeatable setups.
-            </p>
-        </div>
-        </a>
-        <!-- Card 4 -->
-        <a href="work-data-visualisation-dashboard.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
-        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
-        <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold mb-2">Data Visualisation Dashboard</h3>
-            <p class="text-gray-400 flex-1 mb-4">
-            Created an interactive dashboard that visualises complex datasets using D3.js and WebGL. The
-            dashboard supports real‑time updates and enables stakeholders to gain insights quickly through
-            intuitive charts.
-            </p>
-        </div>
-        </a>
-        <!-- Card 5 -->
-        <a href="work-serverless-api-gateway.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
-        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
-        <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold mb-2">Serverless API Gateway</h3>
-            <p class="text-gray-400 flex-1 mb-4">
-            Implemented a cost‑effective serverless REST API using AWS Lambda and API Gateway. The API
-            powers a mobile application and scales seamlessly with incoming traffic.
-            </p>
-        </div>
-        </a>
-        <!-- Card 6 -->
-        <a href="work-cloud-migration.html" class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
-        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
-        <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold mb-2">Cloud Migration</h3>
-            <p class="text-gray-400 flex-1 mb-4">
-            Led the migration of legacy on‑premise services to the cloud, re‑architecting systems for
-            elasticity and resilience. Utilised containerisation and Infrastructure as Code to minimise
-            downtime.
-            </p>
-        </div>
-        </a>
+        <%= render partial: "project", collection: @projects, as: :project %>
     </div>
 </section>
