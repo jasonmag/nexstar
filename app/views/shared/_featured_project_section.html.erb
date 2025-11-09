@@ -1,45 +1,20 @@
-<!-- Featured Projects Section -->
+<%# locals: projects:, title: "Featured Projects" %>
+<% section_title = local_assigns.fetch(:title, "Featured Projects") %>
+
 <section class="py-16 px-6 max-w-screen-xl mx-auto">
-    <h2 class="text-3xl font-semibold mb-8">Featured Projects</h2>
+  <h2 class="text-3xl font-semibold mb-8"><%= section_title %></h2>
+
+  <% if projects.present? %>
     <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- Project Card 1 -->
-        <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col">
-        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
-        <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold mb-2">Real‑Time Analytics Platform</h3>
-            <p class="text-gray-400 flex-1 mb-4">
-            A scalable platform built with React and Node.js that ingests and visualises streaming data. I
-            designed the architecture and implemented the data pipelines using Apache Kafka and
-            WebSockets for real‑time updates.
-            </p>
-            <a href="projects.html" class="mt-auto inline-block px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-md">Read More</a>
-        </div>
-        </div>
-        <!-- Project Card 2 -->
-        <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col">
-        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
-        <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold mb-2">E‑commerce Microservices</h3>
-            <p class="text-gray-400 flex-1 mb-4">
-            An e‑commerce solution composed of microservices written in Go and Python. I orchestrated
-            services with Docker and Kubernetes, implemented CI/CD pipelines and deployed the stack on a
-            cloud provider for high availability.
-            </p>
-            <a href="projects.html" class="mt-auto inline-block px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-md">Read More</a>
-        </div>
-        </div>
-        <!-- Project Card 3 -->
-        <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col">
-        <%= image_tag "projects-bg.png", alt: "Project image", class: "h-40 w-full object-cover" %>
-        <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold mb-2">Data Warehouse Automation</h3>
-            <p class="text-gray-400 flex-1 mb-4">
-            A project automating ETL workflows using Airflow to ingest, transform and load large datasets
-            into a central warehouse. I optimised queries and implemented monitoring to ensure data
-            quality and reliability.
-            </p>
-            <a href="projects.html" class="mt-auto inline-block px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-md">Read More</a>
-        </div>
-        </div>
+      <%= render partial: "projects/project", collection: projects, as: :project %>
     </div>
+  <% else %>
+    <p class="text-gray-400">No projects yet. Check back soon.</p>
+  <% end %>
+
+  <div class="mt-8">
+    <%= link_to "View all projects",
+                projects_path,
+                class: "inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg" %>
+  </div>
 </section>
