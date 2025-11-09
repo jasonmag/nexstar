@@ -1,8 +1,18 @@
-<a href="<%= project.url.presence || (defined?(project_path) ? project_path(project) : '#') %>"
+<a href="<%= project_path(project) %>"
    class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform transform hover:-translate-y-1">
-  <%= image_tag(project.image_url.presence || "projects-bg.png",
-                alt: project.name,
-                class: "h-40 w-full object-cover") %>
+
+  <%# Prefer thumbnail > image_url > fallback image %>
+  <% image_source =
+       if project.thumbnail&.attached?
+         url_for(project.thumbnail)
+       elsif project.image_url.present?
+         project.image_url
+       else
+         asset_path("projects-bg.png")
+       end %>
+
+  <%= image_tag image_source, alt: project.name, class: "h-40 w-full object-cover" %>
+
   <div class="p-6 flex-1 flex flex-col">
     <h3 class="text-xl font-semibold mb-2"><%= project.name %></h3>
     <p class="text-gray-400 flex-1 mb-4"><%= project.description %></p>

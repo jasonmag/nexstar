@@ -1,30 +1,59 @@
-<%# content_for :title, @project.name %>
-<% content_for :title, "Project Name" %>
+<%# Page <title> %>
+<% content_for :title, @project.name %>
+
+<%# Choose hero image: thumbnail > image_url > fallback asset %>
+<%
+  hero_image =
+    if @project.thumbnail&.attached?
+      url_for(@project.thumbnail)
+    elsif @project.respond_to?(:image_url) && @project.image_url.present?
+      @project.image_url
+    else
+      asset_path("hero-bg.png")
+    end
+%>
+
 <!-- Hero -->
-<header class="relative flex items-center justify-center text-center overflow-hidden" style="background-image: url('images/hero-bg.png');">
-    <div class="absolute inset-0 bg-[#0a0d14]/60"></div>
-    <div class="relative z-10 py-32 md:py-40 px-4">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4">Web Application Framework</h1>
-        <p class="text-lg md:text-xl text-gray-300">Building modular foundations for the web</p>
-    </div>
+<header
+  class="relative flex items-center justify-center text-center overflow-hidden"
+  style="background-image: url('<%= hero_image %>'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <div class="absolute inset-0 bg-[#0a0d14]/60"></div>
+  <div class="relative z-10 py-32 md:py-40 px-4">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4"><%= @project.name %></h1>
+    <% if @project.tech_stack.present? %>
+      <p class="text-lg md:text-xl text-gray-300"><%= @project.tech_stack %></p>
+    <% end %>
+  </div>
 </header>
+
 <!-- Content -->
 <section class="py-16 px-6 max-w-screen-md mx-auto">
-    <h2 class="text-3xl font-semibold mb-4">Overview</h2>
-    <p class="text-gray-400 mb-6">
-        This project focuses on the creation of a modular web application framework designed to simplify and
-        accelerate development. The framework scaffolds common features—such as user authentication,
-        authorisation and API integration—so you can focus on building the unique aspects of your product.
-        Written in TypeScript and React, it provides a strong typing system and a modern component-based
-        architecture that scales with your needs.
-    </p>
-    <h3 class="text-2xl font-semibold mb-3">Key Features</h3>
-    <ul class="list-disc list-inside text-gray-400 space-y-2">
-        <li>Out‑of‑the‑box user authentication and authorisation modules.</li>
-        <li>Preconfigured API layer for REST and GraphQL endpoints.</li>
-        <li>Modular architecture promoting code reusability and maintainability.</li>
-        <li>Built with TypeScript and React for type safety and flexibility.</li>
-        <li>Customisable themes and UI components to match your brand.</li>
-    </ul>
-    <a href="projects.html" class="inline-block mt-10 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg">Back to Work</a>
+  <h2 class="text-3xl font-semibold mb-4">Overview</h2>
+
+  <p class="text-gray-400 mb-6">
+    <%= @project.description.presence || "No description provided yet." %>
+  </p>
+
+  <%# Optional meta row: released date + links %>
+  <div class="flex flex-wrap items-center gap-3 text-sm text-gray-400 mb-10">
+    <% if @project.released_on.present? %>
+      <span class="inline-flex items-center px-2 py-1 rounded bg-gray-800/70">
+        Released: <span class="ml-1 font-medium"><%= l(@project.released_on, format: :long) %></span>
+      </span>
+    <% end %>
+
+    <% if @project.url.present? %>
+      <%= link_to "Visit Project", @project.url, target: "_blank", rel: "noopener",
+            class: "inline-block px-3 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white" %>
+    <% end %>
+
+    <% if @project.github_url.present? %>
+      <%= link_to "View on GitHub", @project.github_url, target: "_blank", rel: "noopener",
+            class: "inline-block px-3 py-1 rounded bg-gray-800 hover:bg-gray-700 text-white" %>
+    <% end %>
+  </div>
+
+  <%# Keep your original “Back to Work” button but route it home to projects %>
+  <%= link_to "Back to Projects", projects_path,
+        class: "inline-block mt-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg" %>
 </section>
