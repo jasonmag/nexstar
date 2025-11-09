@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <title><%= content_for(:title) || "Nexstar" %></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- Early theme (prevents flash of wrong theme) -->
+    <script>
+      (function () {
+        try {
+          const ls = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const chosen = ls || (prefersDark ? 'dark' : 'light');
+          if (chosen === 'dark') document.documentElement.classList.add('dark');
+          else document.documentElement.classList.remove('dark');
+        } catch (_) {}
+      })();
+    </script>
+
     <!-- Preconnects for font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Inter font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -28,19 +43,9 @@
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= javascript_importmap_tags %>
-    <!-- Prevent flash of wrong theme on load -->
-    <script>
-      if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark")
-      }
-    </script>
   </head>
 
-  <body class="bg-[#0a0d14] text-white">
+  <body class="bg-background text-text antialiased">
     <%= render "shared/header" %>
     <%= render "shared/flash" %>
     <main>
