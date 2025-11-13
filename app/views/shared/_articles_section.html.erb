@@ -1,0 +1,31 @@
+<section class="py-16 px-6 max-w-screen-xl mx-auto">
+  <h2 class="text-3xl font-semibold mb-8">Latest Articles</h2>
+
+  <% if articles.present? %>
+    <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <% articles.each do |article| %>
+        <div class="bg-white dark:bg-gray-900 rounded-xl shadow p-6 hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-2">
+            <%= link_to article.title, article_path(article), class: "hover:text-blue-500" %>
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            <%= truncate(article.content, length: 120) %>
+          </p>
+
+          <p class="text-sm text-gray-500">
+            <%= article.created_at.strftime("%b %d, %Y") %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-400">No articles yet. Check back soon.</p>
+  <% end %>
+
+  <div class="mt-8">
+    <%= link_to "View all articles",
+                articles_path,
+                class: "inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg" %>
+  </div>
+</section>
