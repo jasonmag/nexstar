@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <title><%= content_for(:title) || "Sign in | Nexstar" %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- Early theme (prevents flash of wrong theme) -->
+    <script>
+      (function () {
+        try {
+          const ls = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const chosen = ls || (prefersDark ? 'dark' : 'light');
+          if (chosen === 'dark') document.documentElement.classList.add('dark');
+          else document.documentElement.classList.remove('dark');
+        } catch (_) {}
+      })();
+    </script>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-background text-text antialiased min-h-screen">
+    <!-- Full-height wrapper -->
+    <div class="min-h-screen flex items-center justify-center">
+      <!-- Optional: small logo / brand top-left -->
+      <%# 
+      <div class="absolute top-4 left-4 text-sm opacity-75">
+        Nexstar
+      </div>
+      %>
+
+      <!-- Auth card -->
+      <div class="w-full bg-white dark:bg-gray-900 rounded-2xl">
+        <h1 class="text-2xl font-semibold mb-6 text-center">
+          <%= content_for?(:title) ? yield(:title) : "Sign in" %>
+        </h1>
+
+        <%= render "shared/flash" %>
+
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
