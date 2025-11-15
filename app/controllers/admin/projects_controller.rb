@@ -1,6 +1,8 @@
 # app/controllers/admin/projects_controller.rb
 module Admin
   class ProjectsController < Admin::BaseController
+    before_action :set_project, only: [:edit, :update, :destroy]
+
     def index
       @projects = Project.order(released_on: :desc)
     end
@@ -14,33 +16,48 @@ module Admin
       if @project.save
         redirect_to admin_projects_path, notice: "Project created."
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
     def edit
-      @project = Project.find(params[:id])
     end
 
     def update
-      @project = Project.find(params[:id])
       if @project.update(project_params)
         redirect_to admin_projects_path, notice: "Project updated."
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
-      @project = Project.find(params[:id])
       @project.destroy
       redirect_to admin_projects_path, notice: "Project deleted."
     end
 
     private
 
+    def set_project
+      # Numeric fallback (in case of old data)
+      if params[:id].to_s.match?(/\A\d+\z/)
+        @project = Project.find(params[:id])
+      else
+        @project = Project.find_by!(slug: params[:id])
+      end
+    end
+
     def project_params
-      params.require(:project).permit(:name, :description, :tech_stack, :url, :github_url, :released_on)
+      params.require(:project).permit(
+        :name,
+        :description,
+        :tech_stack,
+        :url,
+        :github_url,
+        :released_on,
+        :image_url,
+        :slug
+      )
     end
   end
 end

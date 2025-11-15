@@ -21,22 +21,32 @@ class Article < ApplicationRecord
     slug
   end
 
+  # Called from admin to regenerate based on current title
+  def regenerate_slug!
+    self.slug = nil
+    generate_slug
+    save!
+  end
+
   private
 
   def generate_slug
     return if title.blank?
 
     base = title.to_s.parameterize
+
     # if slug is blank, start with base; if present, normalize it
     self.slug = slug.present? ? slug.to_s.parameterize : base
 
-    # ensure uniqueness (avoid clashes on create/update)
     candidate = slug
     n = 2
-    while Article.where.not(id: id).exists?(slug: candidate)
+
+    # ensure uniqueness (avoid clashes on create/update)
+    while self.class.where.not(id: id).exists?(slug: candidate)
       candidate = "#{base}-#{n}"
       n += 1
     end
+
     self.slug = candidate
   end
 end

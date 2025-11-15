@@ -1,6 +1,8 @@
 # app/controllers/admin/articles_controller.rb
 module Admin
   class ArticlesController < Admin::BaseController
+    before_action :set_article, only: [:edit, :update, :destroy]
+
     def index
       @articles = Article.order(published_at: :desc)
     end
@@ -14,26 +16,37 @@ module Admin
       if @article.save
         redirect_to admin_articles_path, notice: "Article created."
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
     def edit
-      @article = Article.find(params[:id])
     end
 
     def update
-      @article = Article.find(params[:id])
       if @article.update(article_params)
         redirect_to admin_articles_path, notice: "Article updated."
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
-    # Add new/create/destroy as needed
+    def destroy
+      @article.destroy
+      redirect_to admin_articles_path, notice: "Article deleted."
+    end
 
     private
+
+    def set_article
+      # If the param looks numeric, fall back to ID (for old records/links)
+      if params[:id].to_s.match?(/\A\d+\z/)
+        @article = Article.find(params[:id])
+      else
+        # Otherwise treat it as a slug
+        @article = Article.find_by!(slug: params[:id])
+      end
+    end
 
     def article_params
       params.require(:article).permit(:title, :content, :slug, :published_at)
