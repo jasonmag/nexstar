@@ -5,5 +5,6 @@ class PagesController < ApplicationController
   end
 
   def about
+    @profile = Profile.first # or Profile.first_or_create!
   end
 end

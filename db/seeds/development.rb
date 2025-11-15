@@ -13,4 +13,4 @@ User.find_or_create_by!(email: "user@jasonmag.com") do |user|
   user.admin = false
 end
 
-puts "Seeded initial users"
+puts "✅ Seeded initial users"

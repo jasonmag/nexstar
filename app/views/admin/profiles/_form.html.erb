@@ -1,0 +1,25 @@
+<%= form_with model: [:admin, @profile], class: "space-y-6 max-w-3xl" do |f| %>
+
+  <%= render "admin/shared/text_field", f: f, field: :name, label: "Name" %>
+  <%= render "admin/shared/text_field", f: f, field: :role, label: "Role / Tagline" %>
+
+  <%= render "admin/shared/text_field", f: f, field: :hero_title, label: "Hero Title" %>
+  <%= render "admin/shared/text_field", f: f, field: :hero_subtitle, label: "Hero Subtitle" %>
+
+  <%= render "admin/shared/textarea", f: f, field: :intro, label: "Intro" %>
+  <%= render "admin/shared/textarea", f: f, field: :who_i_am, label: "Who I Am" %>
+  <%= render "admin/shared/textarea", f: f, field: :what_i_do, label: "What I Do" %>
+  <%= render "admin/shared/textarea", f: f, field: :highlights, label: "Highlights (one per line)" %>
+  <%= render "admin/shared/textarea", f: f, field: :toolbox, label: "Toolbox (comma-separated)" %>
+
+  <%= render "admin/shared/text_field", f: f, field: :email, label: "Email" %>
+  <%= render "admin/shared/text_field", f: f, field: :github_url, label: "GitHub URL" %>
+  <%= render "admin/shared/text_field", f: f, field: :linkedin_url, label: "LinkedIn URL" %>
+
+  <%= render "admin/shared/textarea", f: f, field: :availability_message, label: "Availability Message" %>
+
+  <div class="pt-4">
+    <%= f.submit "Save Profile", class: "bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700" %>
+  </div>
+
+<% end %>

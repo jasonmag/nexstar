@@ -5,8 +5,12 @@
         style="background-image: url('<%= asset_path("about-bg.png") %>');">
   <div class="absolute inset-0 bg-[#0a0d14]/60"></div>
   <div class="relative z-10 py-32 md:py-40 px-4">
-    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">About Me</h1>
-    <p class="text-lg md:text-xl text-gray-200">My journey as a technologist</p>
+    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
+      <%= @profile.hero_title.presence || "About Me" %>
+    </h1>
+    <p class="text-lg md:text-xl text-gray-200">
+      <%= @profile.hero_subtitle.presence || "My journey as a technologist" %>
+    </p>
   </div>
 </header>
 
@@ -21,14 +25,14 @@
       </div>
 
       <div class="flex-1">
-        <h2 class="text-4xl font-bold mb-2">Jason Maglangit</h2>
+        <h2 class="text-4xl font-bold mb-2"><%= @profile.name %></h2>
+
         <p class="text-indigo-600 dark:text-indigo-400 font-semibold mb-4">
-          Full-Stack Ruby on Rails • Data Engineering • DevOps
+          <%= @profile.role %>
         </p>
+
         <p class="text-gray-700 dark:text-gray-300">
-          I help founders and teams launch, scale, and automate digital products. My work spans
-          Rails apps and modern front-ends to lakehouse-style data platforms on Azure—tying product,
-          data, and infrastructure together so teams ship faster with confidence.
+          <%= @profile.intro %>
         </p>
       </div>
     </div>
@@ -37,20 +41,13 @@
     <div>
       <h3 class="text-2xl font-semibold mb-4">Who I Am</h3>
       <div class="space-y-4 text-gray-700 dark:text-gray-300">
-        <p>
-          I’m a software engineer who enjoys turning messy, real-world requirements into clean,
-          reliable systems. I build Rails apps with crisp UX, wire up data platforms following
-          the medallion architecture, and automate deployments so teams can move quickly without
-          breaking things.
-        </p>
-        <p>
-          I’ve worked across startups and enterprise environments, mentored engineers, and integrated
-          with APIs and services across Azure, Databricks, and Microsoft Fabric.
-        </p>
+        <% @profile.who_i_am.to_s.split(/\n{2,}/).each do |paragraph| %>
+          <p><%= paragraph.strip %></p>
+        <% end %>
       </div>
     </div>
 
-    <!-- Stats / Focus Areas -->
+    <!-- Stats / Focus Areas (static boxes) -->
     <div class="grid sm:grid-cols-3 gap-4">
       <div class="rounded-xl bg-gray-50 dark:bg-gray-800 p-4 text-center shadow">
         <div class="text-lg font-extrabold text-gray-900 dark:text-gray-100">Enterprise & Startup</div>
@@ -68,46 +65,48 @@
 
     <!-- What I Do + Highlights -->
     <div class="grid md:grid-cols-2 gap-10">
+      
+      <!-- What I Do -->
       <div>
         <h3 class="text-2xl font-semibold mb-3">What I Do</h3>
-        <ul class="list-disc pl-5 text-gray-700 dark:text-gray-300 space-y-2">
-          <li>Design & build Rails apps with clean UX (Hotwire/Stimulus/Tailwind; React/Vue when it fits).</li>
-          <li>Deliver lakehouse ETL/ELT with Azure Databricks & Microsoft Fabric (bronze/silver/gold).</li>
-          <li>Stand up cloud infra with Bicep/Terraform and ship via CI/CD.</li>
-          <li>Integrate third-party APIs and automate data workflows.</li>
-          <li>Coach teams on delivery, reliability, and developer experience.</li>
-        </ul>
+
+        <% if @profile.what_i_do.to_s.include?("-") %>
+          <ul class="list-disc pl-5 text-gray-700 dark:text-gray-300 space-y-2">
+            <% @profile.what_i_do.to_s.split("\n").each do |line| %>
+              <% next if line.strip.blank? %>
+              <li><%= line.gsub(/^-+\s*/, "") %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-gray-700 dark:text-gray-300">
+            <%= @profile.what_i_do %>
+          </p>
+        <% end %>
       </div>
 
+      <!-- Recent Highlights -->
       <div>
         <h3 class="text-2xl font-semibold mb-3">Recent Highlights</h3>
         <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-          <li class="flex">
-            <span class="mt-1 mr-2 h-2 w-2 rounded-full bg-yellow-400 dark:bg-teal-400"></span>
-            Built reporting pipelines (Bronze/Silver/Gold) with Databricks & Fabric; automated ingestion and prepared BI-ready datasets.
-          </li>
-          <li class="flex">
-            <span class="mt-1 mr-2 h-2 w-2 rounded-full bg-yellow-400 dark:bg-teal-400"></span>
-            Migrated apps & infra from AWS to Azure (Bicep, CI/CD, Key Vault, Web Apps).
-          </li>
-          <li class="flex">
-            <span class="mt-1 mr-2 h-2 w-2 rounded-full bg-yellow-400 dark:bg-teal-400"></span>
-            Full-stack feature work on assessment/analytics platforms (Rails + Vue/React, Postgres).
-          </li>
+          <% @profile.highlights_list.each do |h| %>
+            <li class="flex">
+              <span class="mt-1 mr-2 h-2 w-2 rounded-full bg-yellow-400 dark:bg-teal-400"></span>
+              <%= h %>
+            </li>
+          <% end %>
         </ul>
       </div>
+
     </div>
 
     <!-- Toolbox -->
     <div>
       <h3 class="text-2xl font-semibold mb-3">Toolbox</h3>
       <div class="flex flex-wrap gap-2">
-        <% [
-          "Ruby on Rails","Hotwire/Stimulus","Tailwind CSS","React","Vue.js",
-          "PostgreSQL","Azure","Databricks","Microsoft Fabric","Docker",
-          "Terraform/Bicep","CI/CD"
-        ].each do |t| %>
-          <span class="bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-300 rounded px-3 py-1 text-sm"><%= t %></span>
+        <% @profile.toolbox_list.each do |tool| %>
+          <span class="bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-300 rounded px-3 py-1 text-sm">
+            <%= tool %>
+          </span>
         <% end %>
       </div>
     </div>
@@ -115,19 +114,26 @@
     <!-- Contact / Links -->
     <div class="text-center">
       <h3 class="text-2xl font-semibold mb-4">Let’s Connect</h3>
+
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <%= mail_to "hello@jasonmag.com", "Email Me",
-          class: "inline-block bg-yellow-400 dark:bg-teal-400 text-slate-900 dark:text-gray-900 font-bold px-6 py-3 rounded-xl shadow hover:bg-yellow-500 dark:hover:bg-teal-500 transition" %>
+        <% if @profile.email.present? %>
+          <%= mail_to @profile.email, "Email Me",
+            class: "inline-block bg-yellow-400 dark:bg-teal-400 text-slate-900 dark:text-gray-900 font-bold px-6 py-3 rounded-xl shadow hover:bg-yellow-500 dark:hover:bg-teal-500 transition" %>
+        <% end %>
 
-        <%= link_to "GitHub", "https://github.com/jasonmag", target: "_blank", rel: :noopener,
-          class: "text-gray-700 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-teal-400 underline" %>
+        <% if @profile.github_url.present? %>
+          <%= link_to "GitHub", @profile.github_url, target: "_blank", rel: :noopener,
+            class: "text-gray-700 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-teal-400 underline" %>
+        <% end %>
 
-        <%= link_to "LinkedIn", "https://www.linkedin.com/in/jasonmaglangit", target: "_blank", rel: :noopener,
-          class: "text-gray-700 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-teal-400 underline" %>
+        <% if @profile.linkedin_url.present? %>
+          <%= link_to "LinkedIn", @profile.linkedin_url, target: "_blank", rel: :noopener,
+            class: "text-gray-700 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-teal-400 underline" %>
+        <% end %>
       </div>
 
       <p class="mt-6 text-gray-600 dark:text-gray-400 italic">
-        Available for remote contracts, consulting, or your next big idea.
+        <%= @profile.availability_message.presence || "Available for remote contracts, consulting, or your next big idea." %>
       </p>
     </div>
 

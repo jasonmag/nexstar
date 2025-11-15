@@ -11,3 +11,4 @@
 load(Rails.root.join("db/seeds/development.rb")) if Rails.env.development?
 load(Rails.root.join("db/seeds/articles.rb")) if Rails.env.development?
 load(Rails.root.join("db/seeds/projects.rb")) if Rails.env.development?
+load(Rails.root.join("db/seeds/about.rb")) if Rails.env.development?
