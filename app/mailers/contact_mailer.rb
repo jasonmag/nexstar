@@ -3,6 +3,7 @@ class ContactMailer < ApplicationMailer
 
   default from: DEFAULT_FROM
 
+  # Goes to you
   def notify_owner
     @contact = params[:contact]
 
@@ -12,6 +13,7 @@ class ContactMailer < ApplicationMailer
     )
   end
 
+  # Auto-reply to the sender
   def auto_reply
     @contact = params[:contact]
 
