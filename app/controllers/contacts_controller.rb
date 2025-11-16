@@ -5,8 +5,14 @@ class ContactsController < ApplicationController
 
   def create
     @contact = ContactForm.new(contact_form_params)
+
     if @contact.valid?
-      ContactMailer.with(contact: @contact).send_message.deliver_now
+      # Email to you (owner)
+      ContactMailer.with(contact: @contact).notify_owner.deliver_now
+
+      # Auto reply to sender
+      ContactMailer.with(contact: @contact).auto_reply.deliver_now
+
       flash[:success] = "Your message has been sent successfully!"
       redirect_to new_contact_path
     else

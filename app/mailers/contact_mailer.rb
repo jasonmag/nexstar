@@ -1,8 +1,23 @@
 class ContactMailer < ApplicationMailer
-  default to: "hello@jasonmag.com"
+  DEFAULT_FROM = Rails.application.credentials.dig(:smtp, :username)
 
-  def send_message
+  default from: DEFAULT_FROM
+
+  def notify_owner
     @contact = params[:contact]
-    mail(from: @contact.email, subject: "Contact Form Message from #{@contact.name}")
+
+    mail(
+      to: DEFAULT_FROM,
+      subject: "Message from #{@contact.name} via Contact Form"
+    )
+  end
+
+  def auto_reply
+    @contact = params[:contact]
+
+    mail(
+      to: @contact.email,
+      subject: "Thanks for reaching out, #{@contact.name}!"
+    )
   end
 end
