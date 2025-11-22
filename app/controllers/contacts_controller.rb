@@ -6,6 +6,11 @@ class ContactsController < ApplicationController
   def create
     @contact = ContactForm.new(contact_form_params)
 
+    unless verify_recaptcha(action: 'contact_form', minimum_score: 0.5, response: params[:recaptcha_token])
+      flash.now[:error] = "reCAPTCHA failed. Please try again."
+      return render :new, status: :unprocessable_entity
+    end
+
     if @contact.valid?
       # Email to you (owner)
       ContactMailer.with(contact: @contact).notify_owner.deliver_now

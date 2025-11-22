@@ -36,9 +36,20 @@
           <div class="text-red-600 text-sm"><%= msg %></div>
         <% end %>
       </div>
+      <%= hidden_field_tag "recaptcha_token", nil, id: "recaptcha_token" %>
       <div>
         <%= f.submit "Send Message", class: "w-full bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700" %>
       </div>
     <% end %>
   </div>
 </section>
+
+<script src="https://www.google.com/recaptcha/api.js?render=<%= Rails.application.credentials.dig(:recaptcha, :v3, :site_key) %>"></script>
+
+<script>
+  grecaptcha.ready(function() {
+    grecaptcha.execute("<%= Rails.application.credentials.dig(:recaptcha, :v3, :site_key) %>", {action: "contact_form"}).then(function(token) {
+      document.getElementById("recaptcha_token").value = token;
+    });
+  });
+</script>
