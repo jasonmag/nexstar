@@ -4,6 +4,7 @@
     <title><%= content_for(:title) || "Nexstar" %></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://www.google.com/recaptcha/api.js?render=<%= Rails.application.credentials.dig(:recaptcha, :v3, :site_key) %>"></script>
 
     <!-- Early theme (prevents flash of wrong theme) -->
     <script>
