@@ -1,13 +1,13 @@
 # Name of your application. Used to uniquely configure containers.
-service: <%= ENV.fetch("KAMAL_SERVICE") %>
+service: KAMAL_SERVICE
 
 # Name of the container image.
-image: <%= ENV.fetch("KAMAL_REGISTRY_IMAGE") %>
+image: KAMAL_REGISTRY_IMAGE
 
 # Deploy to these servers.
 servers:
   web:
-    - <%= ENV.fetch("KAMAL_WEB_SERVER") %>
+    - KAMAL_WEB_SERVER
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -20,23 +20,23 @@ servers:
 proxy:
   ssl: true
   hosts:
-    - <% ENV.fetch("KAMAL_PROXY_HOST_1") %>
+    - KAMAL_PROXY_HOST_1
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
   username: 
-    - <% ENV.fetch("KAMAL_REGISTRY_USER") %>
+    - KAMAL_REGISTRY_USER
 
   # Always use an access token rather than real password when possible.
   password:
-    - <% ENV.fetch("KAMAL_REGISTRY_PASSWORD") %>
+    - KAMAL_REGISTRY_PASSWORD
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
   secret:
-    - <% ENV.fetch("RAILS_MASTER_KEY") %>
+    - RAILS_MASTER_KEY
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
     # When you start using multiple servers, you should split out job processing to a dedicated machine.
@@ -91,7 +91,7 @@ builder:
 
 # Use a different ssh user than root
 ssh:
-  user: <% ENV.fetch("KAMAL_SSH_USER") %>
+  user: KAMAL_SSH_USER
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
