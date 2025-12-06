@@ -1,13 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  title: MyString
-  content: MyText
-  slug: MyString
+  title: First Article
+  content: First article body
+  slug: first-article
   published_at: 2025-07-31 22:39:12
 
 two:
-  title: MyString
-  content: MyText
-  slug: MyString
+  title: Second Article
+  content: Second article body
+  slug: second-article
   published_at: 2025-07-31 22:39:12
