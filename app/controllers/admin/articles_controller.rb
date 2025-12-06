@@ -1,7 +1,7 @@
 # app/controllers/admin/articles_controller.rb
 module Admin
   class ArticlesController < Admin::BaseController
-    before_action :set_article, only: [:edit, :update, :destroy]
+    before_action :set_article, only: [ :edit, :update, :destroy ]
 
     def index
       @articles = Article.order(published_at: :desc)

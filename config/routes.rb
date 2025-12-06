@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :articles
     resources :projects
     resources :users
-    
+
     # Add this (singular resource, since there’s only one profile)
     resource :profile, only: [ :edit, :update, :show ]
   end
