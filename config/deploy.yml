@@ -7,7 +7,7 @@ image: jasonmaglangit/nexstart
 # Deploy to these servers.
 servers:
   web:
-    - KAMAL_WEB_SERVER
+    - nexstar
   # job:
   #   hosts:
   #     - 192.168.0.1
