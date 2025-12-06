@@ -27,8 +27,14 @@ module Admin
 
     def update
       @user = User.find(params[:id])
+
       if @user.update(user_params)
-        redirect_to admin_user_path(@user), notice: "User updated successfully."
+        if current_user&.super_admin?
+          @user.admin        = params.dig(:user, :admin)
+          @user.confirmed_at = params.dig(:user, :confirmed_at)
+          @user.save if @user.changed?
+        end
+        redirect_to admin_user_path(@user), notice: "User updated."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -48,10 +54,8 @@ module Admin
     def user_params
       params.require(:user).permit(
         :email,
-        :admin,
         :password,
         :password_confirmation,
-        :confirmed_at,
         :name,
         :avatar
       )

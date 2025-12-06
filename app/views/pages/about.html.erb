@@ -121,14 +121,25 @@
             class: "inline-block bg-yellow-400 dark:bg-teal-400 text-slate-900 dark:text-gray-900 font-bold px-6 py-3 rounded-xl shadow hover:bg-yellow-500 dark:hover:bg-teal-500 transition" %>
         <% end %>
 
-        <% if @profile&.github_url.present? %>
-          <%= link_to "GitHub", @profile.github_url, target: "_blank", rel: :noopener,
-            class: "text-gray-700 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-teal-400 underline" %>
+        <% profile = Profile.first %>
+
+        <% github_url   = safe_profile_url(profile&.github_url,   %w[github.com]) %>
+        <% linkedin_url = safe_profile_url(profile&.linkedin_url, %w[linkedin.com]) %>
+
+        <% if github_url.present? %>
+          <%= link_to "GitHub",
+                      github_url,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      class: "text-gray-700 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-teal-400 underline" %>
         <% end %>
 
-        <% if @profile&.linkedin_url.present? %>
-          <%= link_to "LinkedIn", @profile.linkedin_url, target: "_blank", rel: :noopener,
-            class: "text-gray-700 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-teal-400 underline" %>
+        <% if linkedin_url.present? %>
+          <%= link_to "LinkedIn",
+                      linkedin_url,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      class: "text-gray-700 dark:text-gray-300 hover:text-yellow-600 dark:hover:text-teal-400 underline" %>
         <% end %>
       </div>
 

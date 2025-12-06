@@ -24,21 +24,23 @@ module Admin
     end
 
     def profile_params
-      params.require(:profile).permit(
-        :name,
-        :role,
-        :hero_title,
-        :hero_subtitle,
-        :intro,
-        :who_i_am,
-        :what_i_do,
-        :highlights,
-        :toolbox,
-        :availability_message,
-        :email,
-        :github_url,
-        :linkedin_url
-      )
+      profile = params.require(:profile)
+
+      {
+        name:                 profile[:name],
+        role:                 profile[:role],
+        hero_title:           profile[:hero_title],
+        hero_subtitle:        profile[:hero_subtitle],
+        intro:                profile[:intro],
+        who_i_am:             profile[:who_i_am],
+        what_i_do:            profile[:what_i_do],
+        highlights:           profile[:highlights],
+        toolbox:              profile[:toolbox],
+        availability_message: profile[:availability_message],
+        email:                profile[:email],
+        github_url:           profile[:github_url],
+        linkedin_url:         profile[:linkedin_url]
+      }
     end
   end
 end
