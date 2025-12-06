@@ -1,17 +1,19 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  name: MyString
-  description: MyText
-  tech_stack: MyString
-  url: MyString
-  github_url: MyString
-  released_on: 2025-07-31
+  name: "Portfolio Site"
+  description: "My personal portfolio and blog."
+  tech_stack: "Ruby on Rails 8, Tailwind CSS, Kamal"
+  url: "https://nexstar.jasonmag.com"
+  github_url: "https://github.com/jasonmag/nexstar"
+  released_on: 2025-01-01
+  image_url: "/assets/projects/portfolio.png"
+  slug: "portfolio-site"
 
 two:
-  name: MyString
-  description: MyText
-  tech_stack: MyString
-  url: MyString
-  github_url: MyString
-  released_on: 2025-07-31
+  name: "Nexdue"
+  description: "Payment due tracker for recurring bills."
+  tech_stack: "Ruby on Rails, Stimulus, Tailwind"
+  url: "https://nexdue.jasonmag.com"
+  github_url: "https://github.com/jasonmag/nexdue"
+  released_on: 2024-10-01
+  image_url: "/assets/projects/nexdue.png"
+  slug: "nexdue"
