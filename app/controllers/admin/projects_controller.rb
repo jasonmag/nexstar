@@ -1,7 +1,7 @@
 # app/controllers/admin/projects_controller.rb
 module Admin
   class ProjectsController < Admin::BaseController
-    before_action :set_project, only: [:edit, :update, :destroy]
+    before_action :set_project, only: [ :edit, :update, :destroy ]
 
     def index
       @projects = Project.order(released_on: :desc)

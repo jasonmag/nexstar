@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
 
     # Redirect numeric/legacy paths to the slugged URL
     if request.path != article_path(@article)
-      return redirect_to article_path(@article), status: :moved_permanently
+      redirect_to article_path(@article), status: :moved_permanently
     end
   end
 end
