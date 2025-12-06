@@ -20,7 +20,7 @@ servers:
 proxy:
   ssl: true
   hosts:
-    - KAMAL_PROXY_HOST_1
+    - nexstar.jasonmag.com
 
 # Credentials for your image host.
 registry:
@@ -91,7 +91,7 @@ builder:
 
 # Use a different ssh user than root
 ssh:
-  user: KAMAL_SSH_USER
+  user: ubuntu
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
