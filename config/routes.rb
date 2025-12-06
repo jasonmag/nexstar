@@ -18,12 +18,12 @@ Rails.application.routes.draw do
     resources :users
     
     # Add this (singular resource, since there’s only one profile)
-    resource :profile, only: [:edit, :update, :show]
+    resource :profile, only: [ :edit, :update, :show ]
   end
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :articles, only: [:create, :destroy]
+      resources :articles, only: [ :create, :destroy ]
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
