@@ -71,4 +71,3 @@ gem "tailwindcss-rails", "~> 4.3"
 
 # Gemfile
 gem "recaptcha", require: "recaptcha/rails"
-
