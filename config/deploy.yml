@@ -1,8 +1,8 @@
 # Name of your application. Used to uniquely configure containers.
-service: KAMAL_SERVICE
+service: nexstar
 
 # Name of the container image.
-image: KAMAL_REGISTRY_IMAGE
+image: jasonmaglangit/nexstart
 
 # Deploy to these servers.
 servers:
