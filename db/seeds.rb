@@ -8,7 +8,13 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-load(Rails.root.join("db/seeds/development.rb")) if Rails.env.development?
-load(Rails.root.join("db/seeds/articles.rb")) if Rails.env.development?
-load(Rails.root.join("db/seeds/projects.rb")) if Rails.env.development?
-load(Rails.root.join("db/seeds/about.rb")) if Rails.env.development?
+if Rails.env.development?
+    load(Rails.root.join("db/seeds/development.rb")) 
+    load(Rails.root.join("db/seeds/articles.rb"))
+    load(Rails.root.join("db/seeds/projects.rb"))
+    load(Rails.root.join("db/seeds/about.rb"))
+end
+
+if Rails.env.production?
+  load(Rails.root.join("db/seeds/production.rb"))
+end

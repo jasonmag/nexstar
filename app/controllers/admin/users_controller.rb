@@ -14,6 +14,11 @@ module Admin
 
     def create
       @user = User.new(user_params)
+
+      if current_user&.super_admin?
+        apply_admin_flags(@user)
+      end
+
       if @user.save
         redirect_to admin_users_path, notice: "User created successfully."
       else
@@ -30,10 +35,10 @@ module Admin
 
       if @user.update(user_params)
         if current_user&.super_admin?
-          @user.admin        = params.dig(:user, :admin)
-          @user.confirmed_at = params.dig(:user, :confirmed_at)
+          apply_admin_flags(@user)
           @user.save if @user.changed?
         end
+
         redirect_to admin_user_path(@user), notice: "User updated."
       else
         render :edit, status: :unprocessable_entity
@@ -59,6 +64,18 @@ module Admin
         :name,
         :avatar
       )
+    end
+
+    def apply_admin_flags(user)
+      bool = ActiveModel::Type::Boolean.new
+
+      if params[:user].key?(:admin) || params[:user].key?("admin")
+        user.admin = bool.cast(params.dig(:user, :admin))
+      end
+
+      if params[:user].key?(:super_admin) || params[:user].key?("super_admin")
+        user.super_admin = bool.cast(params.dig(:user, :super_admin))
+      end
     end
   end
 end
