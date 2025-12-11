@@ -9,10 +9,10 @@
 #   end
 
 if Rails.env.development?
-    load(Rails.root.join("db/seeds/development.rb")) 
-    load(Rails.root.join("db/seeds/articles.rb"))
-    load(Rails.root.join("db/seeds/projects.rb"))
-    load(Rails.root.join("db/seeds/about.rb"))
+  load(Rails.root.join("db/seeds/development.rb")) 
+  load(Rails.root.join("db/seeds/articles.rb"))
+  load(Rails.root.join("db/seeds/projects.rb"))
+  load(Rails.root.join("db/seeds/about.rb"))
 end
 
 if Rails.env.production?
