@@ -7,7 +7,7 @@ image: jasonmaglangit/nexstart
 # Deploy to these servers.
 servers:
   web:
-    - nexstar3
+    - nexstar
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -20,7 +20,7 @@ servers:
 proxy:
   ssl: true
   hosts: 
-   - nexstar.jasonmag.com
+   - jasonmag.com
   app_port: 3000
 
 # Credentials for your image host.
