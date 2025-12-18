@@ -21,6 +21,7 @@ proxy:
   ssl: true
   hosts: 
    - jasonmag.com
+   - www.jasonmag.com
   app_port: 3000
 
 # Credentials for your image host.
