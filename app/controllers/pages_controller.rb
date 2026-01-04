@@ -7,4 +7,10 @@ class PagesController < ApplicationController
   def about
     @profile = Profile.first # or Profile.first_or_create!
   end
+
+  def terms
+  end
+
+  def privacy
+  end
 end

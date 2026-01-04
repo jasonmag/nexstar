@@ -1,4 +1,11 @@
 <!-- Footer -->
   <footer class="py-8 text-center text-gray-500 text-sm">
-    &copy; <%= Time.current.year %> JasonMag. All rights reserved.
+    <div class="space-y-2">
+      <p>&copy; <%= Time.current.year %> JasonMag. All rights reserved.</p>
+      <div class="flex items-center justify-center gap-4">
+        <%= link_to "Terms of Service", terms_path, class: "hover:text-indigo-400" %>
+        <span class="text-gray-400">|</span>
+        <%= link_to "Privacy Policy", privacy_path, class: "hover:text-indigo-400" %>
+      </div>
+    </div>
   </footer>
