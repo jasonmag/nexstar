@@ -13,4 +13,9 @@ export PORT="${PORT:-3000}"
 export RUBY_DEBUG_OPEN="true"
 export RUBY_DEBUG_LAZY="true"
 
+# Clear Rails cache if available to avoid stale dev assets.
+if [ -x "bin/rails" ]; then
+  bin/rails tmp:cache:clear
+fi
+
 exec foreman start -f Procfile.dev "$@"
