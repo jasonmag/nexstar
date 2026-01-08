@@ -1,5 +1,6 @@
 # db/seeds.rb
-Profile.first_or_create!(
+profile = Profile.first_or_initialize
+profile.assign_attributes(
   name: "Jason Maglangit",
   role: "Data Engineer • Software Engineer • Cloud & DevOps",
   hero_title: "About Me",
@@ -35,5 +36,6 @@ Profile.first_or_create!(
   github_url: "https://github.com/jasonmag",
   linkedin_url: "https://www.linkedin.com/in/jasonmaglangit"
 )
+profile.save!
 
 puts "✅ Seeded About"
