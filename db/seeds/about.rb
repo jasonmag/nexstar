@@ -1,29 +1,36 @@
 # db/seeds.rb
 Profile.first_or_create!(
   name: "Jason Maglangit",
-  role: "Full-Stack Ruby on Rails • Data Engineering • DevOps",
+  role: "Data Engineer • Software Engineer • Cloud & DevOps",
   hero_title: "About Me",
-  hero_subtitle: "My journey as a technologist",
-  intro: "I help founders and teams launch, scale, and automate digital products...",
+  hero_subtitle: "Building reliable systems from data to product",
+
+  intro: "I help founders and teams design, build, and scale reliable software and data systems — from MVPs to production platforms.",
+
   who_i_am: <<~TEXT,
     I’m a software engineer who enjoys turning messy, real-world requirements into clean, reliable systems.
 
-    I build Rails apps with crisp UX, wire up data platforms following the medallion architecture, and automate deployments so teams can move quickly without breaking things.
+    My work spans full-stack applications, data platforms built on lakehouse architectures, and cloud infrastructure that supports teams as they grow. I care deeply about clarity, maintainability, and building systems that hold up under real-world usage.
   TEXT
+
   what_i_do: <<~TEXT,
-    - Design & build Rails apps with clean UX (Hotwire/Stimulus/Tailwind; React/Vue when it fits).
-    - Deliver lakehouse ETL/ELT with Azure Databricks & Microsoft Fabric (bronze/silver/gold).
-    - Stand up cloud infra with Bicep/Terraform and ship via CI/CD.
-    - Integrate third-party APIs and automate data workflows.
-    - Coach teams on delivery, reliability, and developer experience.
+    - Build production-ready applications and data platforms, from ingestion to user-facing features.
+    - Design and operate lakehouse ETL/ELT pipelines using Azure Databricks & Microsoft Fabric (Bronze/Silver/Gold).
+    - Ship cloud infrastructure with Bicep/Terraform and automated CI/CD pipelines.
+    - Integrate third-party APIs, event-driven data sources, and operational systems.
+    - Help teams improve delivery speed, reliability, and developer experience.
   TEXT
+
   highlights: <<~TEXT,
-    Built reporting pipelines (Bronze/Silver/Gold) with Databricks & Fabric; automated ingestion and BI-ready datasets.
-    Migrated apps & infra from AWS to Azure (Bicep, CI/CD, Key Vault, Web Apps).
-    Full-stack feature work on assessment/analytics platforms (Rails + Vue/React, Postgres).
+    Built reporting and analytics pipelines using Databricks and Microsoft Fabric with Bronze/Silver/Gold layers.
+    Migrated applications and infrastructure from AWS to Azure using Bicep, CI/CD, and managed cloud services.
+    Delivered full-stack features for assessment, education, and analytics platforms using Rails, Vue/React, and PostgreSQL.
   TEXT
-  toolbox: "Ruby on Rails,Hotwire/Stimulus,Tailwind CSS,React,Vue.js,PostgreSQL,Azure,Databricks,Microsoft Fabric,Docker,Terraform/Bicep,CI/CD",
-  availability_message: "Available for remote contracts, consulting, or your next big idea.",
+
+  toolbox: "Python,SQL,PySpark,Azure Databricks,Microsoft Fabric,Lakehouse Architecture,Ruby on Rails,Hotwire/Stimulus,Tailwind CSS,React,Vue.js,PostgreSQL,Docker,Terraform,Bicep,CI/CD",
+
+  availability_message: "Available for remote contracts, consulting, or building your next data-driven platform.",
+
   email: "hello@jasonmag.com",
   github_url: "https://github.com/jasonmag",
   linkedin_url: "https://www.linkedin.com/in/jasonmaglangit"
